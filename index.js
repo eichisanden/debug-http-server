@@ -19,9 +19,9 @@ app.post('/log', (req, res) => {
     console.log("request headers");
     console.log(JSON.stringify(req.headers));
     console.log("req.body");
-    console.log(req.body);
-    req.send(JSON.stringify(req.headers));
-    res.send(req.body);
+    console.log(JSON.stringify(req.body));
+    res.send(JSON.stringify(req.headers));
+    res.send(JSON.stringify(req.body));
   })
   .listen(PORT, () => console.log(`Listening on ${ PORT }`));
 
