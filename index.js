@@ -6,8 +6,6 @@ var bodyParser = require('body-parser');
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({extended: false}));
 
-const async = require('async');
-
 /*
 express()
   .use(express.static(path.join(__dirname, 'public')))
@@ -27,22 +25,16 @@ app.post('/log', (req, res) => {
 });
 
 app.get('/sleep', (req, res) => {
-
-    !async () => {
-        console.log("Sleep 12 seconds");
-        await sleep(12 * 1000);
-    }();
-
-    res.send("{}")
+  const d1 = new Date();
+  while (true) {
+    const d2 = new Date();
+    if (d2 - d1 > 12 * 1000) {
+      break;
+    }
+  }
+  res.send("{}")
 });
 
-function sleep(time) {
-    return new Promise((resolve, reject) => {
-        setTimeout(() => {
-            resolve();
-        }, time);
-    });
-}
 
 app.listen(PORT, () => console.log(`Listening on ${ PORT }`));
 
