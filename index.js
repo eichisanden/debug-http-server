@@ -22,6 +22,13 @@ app.post('/log', (req, res) => {
     console.log(JSON.stringify(req.body));
     res.send(JSON.stringify(req.headers));
     res.send(JSON.stringify(req.body));
-  })
-  .listen(PORT, () => console.log(`Listening on ${ PORT }`));
+  });
+
+app.get('/sleep', (req, res) => {
+    console.log("Sleep 10 seconds");
+    sleep(12 * 1000);
+    res.send("{}")
+  });
+
+app.listen(PORT, () => console.log(`Listening on ${ PORT }`));
 
