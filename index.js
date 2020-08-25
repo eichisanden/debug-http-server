@@ -22,13 +22,25 @@ app.post('/log', (req, res) => {
     console.log(JSON.stringify(req.body));
     res.send(JSON.stringify(req.headers));
     res.send(JSON.stringify(req.body));
-  });
+});
 
 app.get('/sleep', (req, res) => {
-    console.log("Sleep 10 seconds");
-    sleep(12 * 1000);
+
+    !async () => {
+        console.log("Sleep 12 seconds");
+        await sleep(12 * 1000);
+    }();
+
     res.send("{}")
-  });
+});
+
+function sleep(time) {
+    return new Promise((resolve, reject) => {
+        setTimeout(() => {
+            resolve();
+        }, time);
+    });
+}
 
 app.listen(PORT, () => console.log(`Listening on ${ PORT }`));
 
